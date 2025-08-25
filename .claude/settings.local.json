@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(php artisan make:model:*)"
+    ],
+    "additionalDirectories": [
+      "C:\\mnt\\c\\Users\\chaab\\Herd\\nahla\\public\\nahla-images"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "laravel-boost"
+  ]
+}

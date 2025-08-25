@@ -1,0 +1,145 @@
+@import 'tailwindcss';
+@import './fonts.css';
+@import "../../vendor/stratosdigital/strata-ui/resources/css/strata-theme.css";
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@source "../../vendor/stratosdigital/strata-ui/resources/views/**/*.blade.php";
+
+
+@theme {
+    --font-sans: 'Noto Kufi Arabic', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* Override Strata's font settings */
+:root {
+    --font-sans: 'Noto Kufi Arabic', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji' !important;
+}
+
+
+:root {
+    /* ----------------------------------------- */
+    /* Color Palette               */
+    /* ----------------------------------------- */
+
+    --color-kaitoke-green-50: #f1fcf3;
+    --color-kaitoke-green-100: #ddfbe3;
+    --color-kaitoke-green-200: #bef4ca;
+    --color-kaitoke-green-300: #8beaa1;
+    --color-kaitoke-green-400: #51d771;
+    --color-kaitoke-green-500: #29be4e;
+    --color-kaitoke-green-600: #1c9d3c;
+    --color-kaitoke-green-700: #1a7b32;
+    --color-kaitoke-green-800: #1a612c;
+    --color-kaitoke-green-900: #164d25;
+    --color-kaitoke-green-950: #072c11;
+
+    --color-valencia-50: #fef3f2;
+    --color-valencia-100: #fde6e3;
+    --color-valencia-200: #fcd1cc;
+    --color-valencia-300: #f8b2a9;
+    --color-valencia-400: #f38476;
+    --color-valencia-500: #e85c4b;
+    --color-valencia-600: #d03c2a;
+    --color-valencia-700: #b33222;
+    --color-valencia-800: #942d20;
+    --color-valencia-900: #7b2b21;
+    --color-valencia-950: #43120c;
+
+    --primary-500: var(--color-kaitoke-green-700);
+    --accent-500: var(--color-valencia-400);
+    --accent-900: var(--color-valencia-900);
+    --destructive-500: var(--color-valencia-600);
+
+    --teal-500: oklch(0.7321 0.0749 169.8670);
+    --yellow-500: oklch(0.8540 0.0882 76.8292);
+    --yellow-600: oklch(0.7540 0.0982 76.8292);
+    --indigo-500: oklch(0.7857 0.0645 258.0839);
+
+    --radius: 0.5rem;
+
+}
+
+/* RTL Specific Utilities */
+@layer utilities {
+    .text-start {
+        text-align: start;
+    }
+
+    .text-end {
+        text-align: end;
+    }
+
+    .me-auto {
+        margin-inline-end: auto;
+    }
+
+    .ms-auto {
+        margin-inline-start: auto;
+    }
+
+    .pe-4 {
+        padding-inline-end: 1rem;
+    }
+
+    .ps-4 {
+        padding-inline-start: 1rem;
+    }
+
+    /* Arabic text improvements */
+    .arabic-text {
+        font-feature-settings: "liga" 1, "kern" 1, "dlig" 1;
+        text-rendering: optimizeLegibility;
+        direction: rtl;
+        text-align: right;
+    }
+
+    .arabic-heading {
+        font-weight: 600;
+        line-height: 1.2;
+        letter-spacing: -0.01em;
+    }
+
+    /* Header backdrop blur support */
+    .backdrop-blur-md {
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+
+    .backdrop-blur-xl {
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+    }
+
+    /* Dark mode initialization */
+    .dark-mode-init {
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Custom scrollbar for mega menu */
+    .max-h-96::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .max-h-96::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .max-h-96::-webkit-scrollbar-thumb {
+        background: rgba(148, 163, 184, 0.3);
+        border-radius: 3px;
+    }
+
+    .max-h-96::-webkit-scrollbar-thumb:hover {
+        background: rgba(148, 163, 184, 0.5);
+    }
+
+    .bg-card {
+        padding: 0.5rem !important;
+    }
+}
