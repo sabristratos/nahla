@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(php artisan make:model:*)"
+      "Bash(php artisan make:model:*)",
+      "Bash(rm:*)"
     ],
     "additionalDirectories": [
       "C:\\mnt\\c\\Users\\chaab\\Herd\\nahla\\public\\nahla-images"

@@ -1,54 +1,84 @@
+<div>
 {{-- Product Show Page --}}
 <div class="py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {{-- Breadcrumb Navigation --}}
-        <nav class="mb-8" aria-label="Breadcrumb">
-            <ol class="flex items-center space-x-2 text-sm text-muted-foreground">
-                <li>
-                    <a href="{{ route('home') }}" class="hover:text-primary transition-colors arabic-text">
-                        الرئيسية
-                    </a>
-                </li>
-                <li>
-                    <x-icon name="heroicon-o-chevron-left" class="w-4 h-4" />
-                </li>
-                <li>
-                    <span class="arabic-text">المنتجات</span>
-                </li>
-                <li>
-                    <x-icon name="heroicon-o-chevron-left" class="w-4 h-4" />
-                </li>
-                <li class="text-foreground arabic-text">
-                    {{ $product->name_ar }}
-                </li>
-            </ol>
-        </nav>
 
         {{-- Product Details --}}
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {{-- Product Image --}}
-            <div class="space-y-4">
-                <div class="aspect-square bg-muted rounded-2xl overflow-hidden">
-                    @if($product->image_path)
-                        <img 
-                            src="{{ asset('storage/' . $product->image_path) }}" 
-                            alt="{{ $product->name_ar }}" 
-                            class="w-full h-full object-cover"
+            <div class="space-y-4" x-data="{
+                imageZoomed: false,
+                currentImage: @js($product->image_path ? asset('storage/' . $product->image_path) : ''),
+                images: @js(collect([$product->image_path ? asset('storage/' . $product->image_path) : null])
+                    ->concat(collect($product->additional_images ?? [])->map(fn($img) => asset('storage/' . $img)))
+                    ->filter()
+                    ->values()
+                    ->toArray())
+            }">
+                <div class="aspect-square bg-muted rounded-2xl overflow-hidden relative group cursor-zoom-in"
+                     @click="imageZoomed = !imageZoomed">
+                    <template x-if="currentImage">
+                        <img
+                            :src="currentImage"
+                            alt="{{ $product->name_ar }}"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            :class="imageZoomed ? 'scale-150' : 'scale-100'"
+                            loading="lazy"
                         >
-                    @else
+                    </template>
+
+                    <template x-if="!currentImage">
                         <div class="w-full h-full flex items-center justify-center">
                             <x-icon name="heroicon-o-photo" class="w-24 h-24 text-muted-foreground" />
                         </div>
-                    @endif
-                </div>
-                
-                {{-- Additional Images Placeholder --}}
-                <div class="grid grid-cols-4 gap-2">
-                    @for($i = 0; $i < 4; $i++)
-                        <div class="aspect-square bg-muted rounded-lg opacity-50">
+                    </template>
+
+                    {{-- Zoom overlay indicator --}}
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div class="bg-white/90 text-foreground px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-2">
+                            <x-icon name="heroicon-o-magnifying-glass-plus" class="w-4 h-4" />
+                            <span>انقر للتكبير</span>
                         </div>
-                    @endfor
+                    </div>
                 </div>
+
+                {{-- Image Thumbnails Gallery --}}
+                @php
+                    $hasImages = $product->image_path || ($product->additional_images && count($product->additional_images) > 0);
+                    $totalImages = ($product->image_path ? 1 : 0) + (is_array($product->additional_images) ? count($product->additional_images) : 0);
+                @endphp
+                
+                @if($totalImages > 1)
+                    <div class="grid grid-cols-4 gap-2">
+                        @if($product->image_path)
+                            <div class="aspect-square bg-muted rounded-lg overflow-hidden cursor-pointer hover:ring-2 hover:ring-primary transition-all duration-300"
+                                 @click="currentImage = '{{ asset('storage/' . $product->image_path) }}'"
+                                 :class="currentImage === '{{ asset('storage/' . $product->image_path) }}' ? 'ring-2 ring-primary' : ''">
+                                <img
+                                    src="{{ asset('storage/' . $product->image_path) }}"
+                                    alt="{{ $product->name_ar }}"
+                                    class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                                    loading="lazy"
+                                />
+                            </div>
+                        @endif
+
+                        @if($product->additional_images && is_array($product->additional_images))
+                            @foreach($product->additional_images as $index => $image)
+                                <div class="aspect-square bg-muted rounded-lg overflow-hidden cursor-pointer hover:ring-2 hover:ring-primary transition-all duration-300"
+                                     @click="currentImage = '{{ asset('storage/' . $image) }}'"
+                                     :class="currentImage === '{{ asset('storage/' . $image) }}' ? 'ring-2 ring-primary' : ''">
+                                    <img
+                                        src="{{ asset('storage/' . $image) }}"
+                                        alt="{{ $product->name_ar }} - صورة {{ $index + 1 }}"
+                                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                                        loading="lazy"
+                                    />
+                                </div>
+                            @endforeach
+                        @endif
+                    </div>
+                @endif
             </div>
 
             {{-- Product Info --}}
@@ -137,25 +167,32 @@
                     </div>
                 @endif
 
-                {{-- Contact for Order --}}
-                <div class="bg-muted rounded-2xl p-6 space-y-4">
+                {{-- Add to Cart Section --}}
+                <div class="bg-muted rounded-2xl p-6 space-y-6">
                     <h3 class="text-primary arabic-heading">
                         اطلب الآن
                     </h3>
-                    <p class="text-primary arabic-text">
-                        للطلب، يرجى الاتصال بنا على الأرقام التالية:
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-3">
-                        <a href="tel:21526011" 
-                           class="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-lg transition-colors arabic-text font-medium">
-                            <x-icon name="heroicon-o-phone" class="w-5 h-5" />
-                            21.526.011
-                        </a>
-                        <a href="tel:29082808" 
-                           class="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-lg transition-colors arabic-text font-medium">
-                            <x-icon name="heroicon-o-phone" class="w-5 h-5" />
-                            29.082.808
-                        </a>
+
+                    {{-- Add to Cart Component --}}
+                    <livewire:add-to-cart-button :product="$product" mode="full" :key="'product-cart-'.$product->id" />
+
+                    {{-- Alternative Contact Methods --}}
+                    <div class="border-t border-border pt-4">
+                        <p class="text-sm text-muted-foreground arabic-text mb-3">
+                            أو تواصل معنا مباشرة:
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-2">
+                            <a href="tel:21526011"
+                               class="flex items-center justify-center gap-2 bg-background hover:bg-primary hover:text-primary-foreground border border-primary text-primary px-4 py-2 rounded-lg transition-all duration-300 arabic-text text-sm">
+                                <x-icon name="heroicon-o-phone" class="w-4 h-4" />
+                                21.526.011
+                            </a>
+                            <a href="tel:29082808"
+                               class="flex items-center justify-center gap-2 bg-background hover:bg-primary hover:text-primary-foreground border border-primary text-primary px-4 py-2 rounded-lg transition-all duration-300 arabic-text text-sm">
+                                <x-icon name="heroicon-o-phone" class="w-4 h-4" />
+                                29.082.808
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -163,11 +200,12 @@
 
         {{-- Back to Home --}}
         <div class="mt-12 text-center">
-            <a href="{{ route('home') }}" 
+            <a href="{{ route('home') }}"
                class="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors arabic-text font-medium">
                 <x-icon name="heroicon-o-arrow-right" class="w-4 h-4" />
                 العودة إلى الرئيسية
             </a>
         </div>
     </div>
+</div>
 </div>

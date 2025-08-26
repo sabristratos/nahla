@@ -61,7 +61,7 @@
     --yellow-600: oklch(0.7540 0.0982 76.8292);
     --indigo-500: oklch(0.7857 0.0645 258.0839);
 
-    --radius: 0.5rem;
+    --radius: 1rem;
 
 }
 
@@ -139,7 +139,47 @@
         background: rgba(148, 163, 184, 0.5);
     }
 
-    .bg-card {
-        padding: 0.5rem !important;
+    /* Alpine.js x-cloak directive */
+    [x-cloak] {
+        display: none !important;
     }
+
+    /* Scrollbar hide utility */
+    .scrollbar-hide {
+        -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        scrollbar-width: none;  /* Firefox */
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;  /* Safari and Chrome */
+    }
+
+    /* Scroll snap utilities */
+    .snap-x {
+        scroll-snap-type: x mandatory;
+    }
+
+    .snap-mandatory {
+        scroll-snap-type: x mandatory;
+    }
+
+    .snap-start {
+        scroll-snap-align: start;
+    }
+
+    .snap-center {
+        scroll-snap-align: center;
+    }
+
+    /* Remove underlines from all links */
+    a {
+        text-decoration: none !important;
+    }
+
+    /* Optional: Add underline on hover if needed */
+    a:hover {
+        text-decoration: none !important;
+    }
+
+
 }

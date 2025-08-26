@@ -9,12 +9,15 @@ class Header extends Component
 {
     public function render()
     {
-        $products = Product::where('is_active', true)
-            ->orderBy('sort_order')
-            ->get();
+        // Get 1 featured product using cache
+        $featuredProduct = Product::getCachedFeatured(1)->first();
+
+        // Get 3 regular products (non-featured) using cache
+        $regularProducts = Product::getCachedRegular(3);
 
         return view('livewire.header', [
-            'products' => $products
+            'featuredProduct' => $featuredProduct,
+            'regularProducts' => $regularProducts
         ]);
     }
 }

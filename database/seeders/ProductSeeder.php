@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder
@@ -25,7 +24,7 @@ class ProductSeeder extends Seeder
                 'image_path' => 'products/creme-hydra-plus.png',
                 'additional_images' => [
                     '/nahla-images/Étiquette/Créme Hydra plus/Design 1.png',
-                    '/nahla-images/Étiquette/Créme Hydra plus/mockup  (2).png'
+                    '/nahla-images/Étiquette/Créme Hydra plus/mockup  (2).png',
                 ],
                 'sort_order' => 1,
             ],
@@ -39,7 +38,7 @@ class ProductSeeder extends Seeder
                 'size' => '100 مل',
                 'image_path' => 'products/spray-naturel.jpg',
                 'additional_images' => [
-                    '/nahla-images/Étiquette/Spray naturel/Spray-naturel.jpg'
+                    '/nahla-images/Étiquette/Spray naturel/Spray-naturel.jpg',
                 ],
                 'sort_order' => 2,
             ],
@@ -53,7 +52,7 @@ class ProductSeeder extends Seeder
                 'size' => '50 جرام',
                 'image_path' => 'products/creme-deodorant.jpg',
                 'additional_images' => [
-                    '/nahla-images/Étiquette/Crème déodorant/Design 1.png'
+                    '/nahla-images/Étiquette/Crème déodorant/Design 1.png',
                 ],
                 'sort_order' => 3,
             ],
@@ -67,7 +66,7 @@ class ProductSeeder extends Seeder
                 'size' => '200 مل',
                 'image_path' => 'products/gel-anti-douleurs.jpg',
                 'additional_images' => [
-                    '/nahla-images/Étiquette/Gel anti douleurs/Gel-anti-douleurs.jpg'
+                    '/nahla-images/Étiquette/Gel anti douleurs/Gel-anti-douleurs.jpg',
                 ],
                 'sort_order' => 4,
             ],
@@ -93,7 +92,7 @@ class ProductSeeder extends Seeder
                 'size' => '50 جرام',
                 'image_path' => 'products/beurre-mangue.jpg',
                 'additional_images' => [
-                    '/nahla-images/Étiquette/Beurre de mangue/Design 1.png'
+                    '/nahla-images/Étiquette/Beurre de mangue/Design 1.png',
                 ],
                 'sort_order' => 6,
             ],
@@ -108,9 +107,24 @@ class ProductSeeder extends Seeder
                 'image_path' => 'products/beurre-karite.png',
                 'additional_images' => [
                     '/nahla-images/Étiquette/Beurre de Kartité/Design 1.png',
-                    '/nahla-images/Étiquette/Beurre de Kartité/mockup  (2).png'
+                    '/nahla-images/Étiquette/Beurre de Kartité/mockup  (2).png',
                 ],
                 'sort_order' => 7,
+            ],
+            [
+                'name_ar' => 'زيت الخروع',
+                'description_ar' => 'زيت خروع طبيعي 100% غير مصفى ومعصور على البارد. يغذي الشعر والبشرة والأظافر ويحفز نموها الطبيعي.',
+                'ingredients_ar' => 'زيت خروع نقي 100% معصور على البارد',
+                'usage_ar' => 'للشعر: يوضع على فروة الرأس مع التدليك اللطيف قبل الاستحمام. للبشرة: يوضع على المناطق الجافة. للأظافر: يُدلك حول الأظافر',
+                'benefits_ar' => 'يحفز نمو الشعر والأظافر. يرطب البشرة الجافة. غني بالأحماض الدهنية والفيتامينات. معصور على البارد لحفظ الخصائص الطبيعية',
+                'price' => 28.00,
+                'size' => '100 مل',
+                'image_path' => 'products/castor-oil-2.png',
+                'additional_images' => [
+                    'products/castor-oil.png',
+                ],
+                'sort_order' => 8,
+                'is_featured' => true,
             ],
         ];
 

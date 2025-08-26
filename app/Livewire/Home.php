@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Product;
+use App\Models\Review;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -11,13 +12,17 @@ class Home extends Component
 {
     public function render()
     {
-        $featuredProducts = Product::where('is_active', true)
-            ->orderBy('sort_order')
-            ->take(2)
-            ->get();
+        // Use cached methods for better performance
+        $featuredProducts = Product::getCachedFeatured(2);
+        $products = Product::getCachedActive();
+        $featuredTestimonials = Review::getCachedFeatured();
+        $castorOilProduct = Product::getCachedCastorOil();
 
         return view('livewire.home', [
-            'featuredProducts' => $featuredProducts
+            'featuredProducts' => $featuredProducts,
+            'products' => $products,
+            'featuredTestimonials' => $featuredTestimonials,
+            'castorOilProduct' => $castorOilProduct,
         ]);
     }
 }

@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Review;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ReviewSeeder extends Seeder
@@ -15,52 +14,36 @@ class ReviewSeeder extends Seeder
     {
         $reviews = [
             [
-                'customer_name' => 'فاطمة محمد',
-                'review_text_ar' => 'منتجات رائعة وطبيعية 100%. استخدمت كريم Hydra Plus وأصبحت بشرتي أكثر نعومة ونضارة. أنصح به بشدة!',
+                'customer_name' => 'Lovely lmt',
+                'review_text_ar' => 'شريت منكم شهادة حق والله نفعني وخام باللحق وربي يباركلكم وحتى البنية الى تخدم معاكم',
                 'rating' => 5,
-                'location' => 'تونس العاصمة',
+                'location' => '',
                 'is_featured' => true,
                 'sort_order' => 1,
             ],
             [
-                'customer_name' => 'أحمد بن علي',
-                'review_text_ar' => 'جل مضاد للألم ممتاز! ساعدني كثيراً في علاج آلام الظهر. التأثير سريع والرائحة منعشة.',
+                'customer_name' => 'mariam8',
+                'review_text_ar' => 'شهادة من الدين و طالبة الشفاء تعاملت معكم قداه من مرة زيت الخروع ذات جودة عالية و نافع الحمد لله. الله يرحم والديكم',
                 'rating' => 5,
-                'location' => 'صفاقس',
+                'location' => '',
                 'is_featured' => true,
                 'sort_order' => 2,
             ],
             [
-                'customer_name' => 'زينب الهادي',
-                'review_text_ar' => 'زبدة الشيا الخام مفيدة جداً للبشرة الجافة. استخدمتها أثناء الحمل ومنعت ظهور التشققات.',
+                'customer_name' => 'Mizouri Naziha',
+                'review_text_ar' => 'ربي يباركلكم بالحق أخلاق عالية وخدمة بسم الله ماشاء الله ربي يباركلكم ثقة',
                 'rating' => 5,
-                'location' => 'سوسة',
+                'location' => '',
                 'is_featured' => true,
                 'sort_order' => 3,
             ],
             [
-                'customer_name' => 'محمد الجندي',
-                'review_text_ar' => 'خل التفاح طبيعي ونقي. طعمه ممتاز واستخدمه للصحة العامة. جودة ممتازة.',
-                'rating' => 4,
-                'location' => 'المنستير',
-                'is_featured' => false,
-                'sort_order' => 4,
-            ],
-            [
-                'customer_name' => 'نورا السالم',
-                'review_text_ar' => 'كريم مزيل العرق طبيعي وفعال. رائحته جميلة وحماية تدوم طوال اليوم. سعيدة بالنتيجة.',
+                'customer_name' => 'jalilaaissani',
+                'review_text_ar' => 'انا خذيت ونصحت بيه برشا ناس وحتى من بلدان اخرى وعطيتهم رقمكم ونحب نعدي كومند مرة أخرى اختي نهلة افرحك واباركلك في صحتك لو ممكن طبعاً',
                 'rating' => 5,
-                'location' => 'قابس',
+                'location' => '',
                 'is_featured' => true,
-                'sort_order' => 5,
-            ],
-            [
-                'customer_name' => 'عبد الرحمن منصور',
-                'review_text_ar' => 'بخاخ الفطريات ساعدني في علاج فطريات القدم بشكل طبيعي. النتائج ظهرت خلال أسبوع.',
-                'rating' => 4,
-                'location' => 'بنزرت',
-                'is_featured' => false,
-                'sort_order' => 6,
+                'sort_order' => 4,
             ],
         ];
 

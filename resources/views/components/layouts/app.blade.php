@@ -8,31 +8,47 @@
         <meta name="author" content="Nahlabio Laboratoire">
 
         <title>{{ $title ?? 'نهلابيو - منتجات طبيعية 100%' }}</title>
+        @livewireStyles
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="bg-background text-foreground font-sans antialiased min-h-screen">
         {{-- Background with Teal Glow Effect --}}
         <div class="min-h-screen w-full relative">
             {{-- Teal Glow Left --}}
-            <div class="absolute inset-0 z-0" 
-                 style="background: transparent; 
-                        background-image: radial-gradient(circle at top left, color-mix(in srgb, var(--teal-500) 40%, transparent), transparent 60%); 
-                        filter: blur(80px); 
-                        background-repeat: no-repeat;">
+            <div class="fixed inset-0 z-0"
+                 style="filter: blur(80px);
+                        background: transparent radial-gradient(circle at top left, color-mix(in srgb, var(--teal-500) 40%, transparent), transparent 60%) no-repeat;">
             </div>
-            
+
             {{-- Header Component --}}
             <div class="relative z-10">
                 <livewire:header />
             </div>
 
             {{-- Page Content --}}
-            <div class="pt-24 relative z-10">
+            <div class="relative z-10">
                 {{ $slot }}
+            </div>
+
+            {{-- Footer --}}
+            <div class="relative z-10">
+                <x-footer />
             </div>
         </div>
 
+        {{-- Livewire Cart Component --}}
+        <livewire:cart />
+
+        {{-- Contact Modal --}}
+        <div x-data="{ contactModalOpen: false }" @open-contact-modal.window="contactModalOpen = true">
+            <x-contact-modal />
+        </div>
+
+        {{-- Quick Order Modal --}}
+        <x-quick-order-modal />
+
         @livewireScripts
         @strataScripts
+        @stack('scripts')
     </body>
 </html>

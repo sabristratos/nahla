@@ -21,6 +21,7 @@ return new class extends Migration
             $table->decimal('price', 8, 2);
             $table->string('size')->nullable();
             $table->string('image_path');
+            $table->boolean('is_featured')->default(false);
             $table->json('additional_images')->nullable();
             $table->boolean('is_active')->default(true);
             $table->integer('sort_order')->default(0);
