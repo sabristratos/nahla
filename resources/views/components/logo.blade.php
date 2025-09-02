@@ -41,7 +41,7 @@
         <img
             x-show="!isDark"
             src="{{ asset('logo-dark.png') }}"
-            alt="Nahla Logo"
+            alt="نهلة Logo"
             class="{{ $size }} w-auto transition-opacity duration-300"
             x-transition:enter="transition ease-out duration-300"
             x-transition:enter-start="opacity-0"
@@ -55,7 +55,7 @@
         <img
             x-show="isDark"
             src="{{ asset('logo-light.png') }}"
-            alt="Nahla Logo"
+            alt="نهلة Logo"
             class="{{ $size }} w-auto transition-opacity duration-300"
             x-transition:enter="transition ease-out duration-300"
             x-transition:enter-start="opacity-0"

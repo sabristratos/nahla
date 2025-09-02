@@ -10,7 +10,7 @@
      @cart-item-added.window="isLoading = false">
 
     {{-- Product Image --}}
-    <div class="aspect-square bg-muted overflow-hidden relative !rounded-[0.7rem]">
+    <a href="{{ $product ? route('product.show', $product) : '#' }}" class="block aspect-square bg-muted overflow-hidden relative !rounded-[0.7rem]">
         @if($product && $product->image_path)
             <img
                 src="{{ asset('storage/' . $product->image_path) }}"
@@ -38,7 +38,7 @@
              :class="isLoading ? 'opacity-100' : 'opacity-0 pointer-events-none'">
             <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
         </div>
-    </div>
+    </a>
 
     {{-- Product Info --}}
     <div class="p-4 sm:p-6 relative flex-1 flex flex-col">

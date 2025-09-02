@@ -3,7 +3,7 @@
     <div class="space-y-6" x-fade-in="{ stagger: 0.3, delay: 0.2 }">
         <h1 class="text-5xl lg:text-6xl font-bold arabic-heading leading-tight">
             <span class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                نحلة
+                نهلة
             </span>
             <br>
             <span class="text-foreground">
